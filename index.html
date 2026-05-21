@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClearClaims Prototype</title>
+    <link rel="stylesheet" href="styles.css?v=15" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
+  <body class="auth-required">
+    <svg aria-hidden="true" class="icon-sprite">
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9.5 20v-6h5v6"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 6.5h6l2 2h9v9a2 2 0 0 1-2 2h-15z"/><path d="M3.5 6.5v13"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5h4l1.5-2h5L16 8.5h4v11H4z"/><circle cx="12" cy="14" r="3.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="m4 7.5 8-4 8 4-8 4z"/><path d="M4 7.5v9l8 4 8-4v-9"/><path d="M12 11.5v9"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4"/><path d="M9.5 12h5"/><path d="M9.5 15h5"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.5-2.9 7.6-7 9-4.1-1.4-7-4.5-7-9V6z"/><path d="m8.8 12.2 2.1 2.1 4.4-5"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10"/><path d="m8 10 4 4 4-4"/><path d="M5 19h14"/></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5z"/><path d="M8 4v6h8V4"/><path d="M8 20v-6h8v6"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V9"/><path d="m8 13 4-4 4 4"/><path d="M5 5h14"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M5 7h14"/><path d="M9 7V5h6v2"/><path d="m8 10 .6 9h6.8l.6-9"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.5v5"/><path d="M12 7.5h.01"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M5 5.5h14v14H5z"/><path d="M8 3.5v4"/><path d="M16 3.5v4"/><path d="M5 9h14"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="m7 7 10 10"/><path d="m17 7-10 10"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2"/><path d="M5.5 10h13v10h-13z"/><path d="M12 14v2.5"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+    </svg>
+
+    <section class="auth-screen" id="authScreen" aria-labelledby="authTitle">
+      <div class="auth-shell">
+        <div class="auth-brand-card">
+          <div class="brand-block">
+            <div class="brand-mark" aria-hidden="true">
+              <img src="assets/clearclaims_appicon_final.png" alt="" />
+            </div>
+            <div>
+              <div class="brand-name">ClearClaims</div>
+              <div class="brand-subtitle">Claims should not be confusing.</div>
+            </div>
+          </div>
+          <img class="auth-logo" src="assets/clearclaims_refined_v2.png" alt="ClearClaims" />
+          <div>
+            <p class="eyebrow">ClearClaims customer service hub</p>
+            <h1 id="authTitle">Claims should not be confusing.</h1>
+            <p>One place for homeowners, contractors, and public adjusters to organize claim records, understand what is needed next, and keep information moving.</p>
+          </div>
+          <div class="auth-feature-grid">
+            <div><svg><use href="#i-home"></use></svg><strong>Clear Advantage</strong><span>Know the next right step.</span></div>
+            <div><svg><use href="#i-file"></use></svg><strong>Clear Answers</strong><span>Understand policy and claim documents.</span></div>
+            <div><svg><use href="#i-shield"></use></svg><strong>Clear Results</strong><span>Build a useful claim record.</span></div>
+            <div><svg><use href="#i-info"></use></svg><strong>Clear Purpose</strong><span>Keep everyone aligned.</span></div>
+          </div>
+          <div class="auth-pricing-strip">
+            <span>Homeowners: $14/week</span>
+            <span>Public adjusters: $500/month</span>
+            <span>Contractors: $1,500/month</span>
+          </div>
+          <p class="copyright-line">© 2026 ClearClaims. All rights reserved.</p>
+        </div>
+
+        <div class="auth-card">
+          <div class="auth-card-heading">
+            <div class="auth-icon"><svg><use href="#i-lock"></use></svg></div>
+            <div>
+              <p class="eyebrow">Account login</p>
+              <h2>Enter your ClearClaims account.</h2>
+            </div>
+          </div>
+          <form class="auth-form" id="loginForm">
+            <label>Email
+              <input name="email" type="email" list="accountEmails" placeholder="you@example.com" required />
+            </label>
+            <datalist id="accountEmails">
+              <option value="maya.johnson@example.com"></option>
+              <option value="office@roofrightcontractors.com"></option>
+              <option value="adjuster@examplepa.com"></option>
+              <option value="chuck@claimguardians.com"></option>
+              <option value="cynthia@claimguardians.com"></option>
+            </datalist>
+            <label>Password
+              <input name="password" type="password" placeholder="Prototype password" required />
+            </label>
+            <button class="text-button primary" type="submit">
+              <svg><use href="#i-lock"></use></svg><span>Log In</span>
+            </button>
+          </form>
+          <div class="quick-login" aria-label="Prototype quick login">
+            <button type="button" data-account-login="customer"><span>Continue as</span><strong>Homeowner</strong></button>
+            <button type="button" data-account-login="contractor"><span>Continue as</span><strong>Contractor</strong></button>
+            <button type="button" data-account-login="adjuster"><span>Continue as</span><strong>Public Adjuster</strong></button>
+          </div>
+          <p class="auth-status" id="authStatus" aria-live="polite">Prototype login only. The role selected during signup determines where each user starts after login.</p>
+        </div>
+
+        <div class="auth-card auth-create-card">
+          <div class="auth-card-heading">
+            <div class="auth-icon"><svg><use href="#i-user"></use></svg></div>
+            <div>
+              <p class="eyebrow">Create account</p>
+              <h2>Choose your role to get started.</h2>
+            </div>
+          </div>
+          <form class="auth-form" id="createAccountForm">
+            <label>Full name
+              <input name="name" placeholder="Your name" required />
+            </label>
+            <label>Email
+              <input name="email" type="email" placeholder="name@example.com" required />
+            </label>
+            <label>Role
+              <select name="role" required>
+                <option value="Homeowner">Homeowner / Customer</option>
+                <option value="Contractor">Contractor Company</option>
+                <option value="Public Adjuster">Public Adjuster</option>
+              </select>
+            </label>
+            <p class="micro-copy">Contractor company accounts can add team members who share the primary company email domain.</p>
+            <button class="text-button" type="submit">Create Account Preview</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="assets/clearclaims_appicon_final.png" alt="" />
+          </div>
+          <div>
+            <div class="brand-name">ClearClaims</div>
+            <div class="brand-subtitle">© 2026 ClearClaims</div>
+          </div>
+        </div>
+
+        <div class="session-card" aria-live="polite">
+          <span>Signed in</span>
+          <strong id="sessionStaffName">Account</strong>
+          <small id="sessionAssignedArea">Assigned workspace</small>
+          <button class="text-button compact" type="button" id="signOut">Sign Out</button>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-button active" data-view="claim">
+            <svg><use href="#i-home"></use></svg><span>Clear Advantage</span>
+          </button>
+          <button class="nav-button" data-view="documents">
+            <svg><use href="#i-folder"></use></svg><span>Clear Records</span>
+          </button>
+          <button class="nav-button" data-view="photos">
+            <svg><use href="#i-camera"></use></svg><span>Clear Evidence</span>
+          </button>
+          <button class="nav-button" data-view="timeline">
+            <svg><use href="#i-clock"></use></svg><span>Clear Process</span>
+          </button>
+          <button class="nav-button" data-view="inventory">
+            <svg><use href="#i-box"></use></svg><span>Clear Inventory</span>
+          </button>
+          <button class="nav-button" data-view="policy">
+            <svg><use href="#i-file"></use></svg><span>Clear Answers</span>
+          </button>
+          <button class="nav-button" data-view="letters">
+            <svg><use href="#i-pen"></use></svg><span>Clear Communications</span>
+          </button>
+          <button class="nav-button" data-view="doi">
+            <svg><use href="#i-shield"></use></svg><span>Clear Results</span>
+          </button>
+          <a class="nav-link" href="clear-purpose.html">
+            <svg><use href="#i-info"></use></svg><span>Clear Purpose</span>
+          </a>
+        </nav>
+
+        <div class="side-summary" aria-live="polite">
+          <div class="side-label">Active claim</div>
+          <strong id="sideClaimNumber">Claim number pending</strong>
+          <span id="sideCarrier">Carrier pending</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="app-hero" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <p class="eyebrow" id="accountRoleLabel">ClearClaims</p>
+            <img class="hero-logo" src="assets/clearclaims_refined_v2.png" alt="ClearClaims" />
+            <h1 id="heroTitle">Claims should not be confusing.</h1>
+            <p id="heroSubtitle">ClearClaims guides each user to the information needed now, next, and through the final claim flow.</p>
+          </div>
+          <div class="claim-progress-card" aria-label="Six month claim timeline">
+            <div class="progress-card-heading">
+              <span>Claim timeline</span>
+              <strong>Month 2 of 6</strong>
+            </div>
+            <div class="claim-progress-track" aria-hidden="true">
+              <span class="complete"></span>
+              <span class="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="timeline-labels">
+              <span>File</span>
+              <span>Review</span>
+              <span>Inspect</span>
+              <span>Estimate</span>
+              <span>Payment</span>
+              <span>Close</span>
+            </div>
+            <p>Most claims take about 6 months from claim filing to last payment.</p>
+          </div>
+        </section>
+
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">North Carolina prototype</p>
+            <h1 id="viewTitle">Clear Advantage</h1>
+          </div>
+          <div class="header-actions">
+            <button class="icon-button" id="resetDemo" title="Reset demo data" aria-label="Reset demo data">
+              <svg><use href="#i-x"></use></svg>
+            </button>
+            <button class="text-button" id="exportData">
+              <svg><use href="#i-download"></use></svg><span>Export My Data</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="notice-band" role="note">
+          <svg><use href="#i-info"></use></svg>
+          <p>ClearClaims routes each account to the work that role needs first, then guides the next step as claim information comes in.</p>
+        </div>
+
+        <section class="view active" id="view-claim" aria-labelledby="claimHeading">
+          <section class="staff-command" aria-labelledby="commandHeading">
+            <div class="command-header">
+              <div>
+                <p class="eyebrow">Clear Advantage / Public adjuster workspace</p>
+                <h2 id="commandHeading">Command Center</h2>
+                <p>Claims are organized by urgency first, with new information, payments, customer updates, contractor uploads, and AI-suggested work surfaced for review.</p>
+              </div>
+              <div class="staff-access-badge">
+                <span>Signed in account</span>
+                <strong id="staffBadgeName">Account workspace</strong>
+                <small id="staffBadgeArea">Assigned area loads after login</small>
+              </div>
+            </div>
+
+            <div class="command-metrics" aria-label="Command center summary">
+              <div><span>New review items</span><strong>18</strong><small>Email, uploads, messages</small></div>
+              <div><span>Critical requests</span><strong>3</strong><small>15+ days open</small></div>
+              <div><span>Payments to process</span><strong>2</strong><small>Checks need allocation</small></div>
+              <div><span>Sales leads</span><strong>5</strong><small>Tech-submitted follow-ups</small></div>
+            </div>
+
+            <div class="command-layout">
+              <section class="command-panel command-panel-wide" aria-labelledby="urgencyHeading">
+                <div class="panel-heading">
+                  <h3 id="urgencyHeading">Claims by Urgency</h3>
+                  <span class="tag">Exact day timers</span>
+                </div>
+                <div class="urgency-list">
+                  <article class="claim-row critical">
+                    <div class="urgency-marker"><strong>Critical</strong><span>16 days</span></div>
+                    <div>
+                      <h4>Maya Johnson</h4>
+                      <p>Carrier Review / Waiting on carrier policy and denial basis</p>
+                      <span>Oldest request: complete policy copy requested May 5</span>
+                    </div>
+                    <div class="claim-row-meta">
+                      <span>Clear Evidence</span>
+                      <strong>AI suggests Cynthia</strong>
+                    </div>
+                    <div class="row-links">
+                      <a href="#claimForm">Open Claim</a>
+                      <a href="customer-portal.html">Customer Portal</a>
+                      <a href="contractor-portal.html">Contractor Portal</a>
+                    </div>
+                  </article>
+                  <article class="claim-row urgent">
+                    <div class="urgency-marker"><strong>Urgent</strong><span>11 days</span></div>
+                    <div>
+                      <h4>Daniel Reed</h4>
+                      <p>Payment Review / Waiting on check copy and mortgage endorsement status</p>
+                      <span>Newest item: carrier payment email filed this morning</span>
+                    </div>
+                    <div class="claim-row-meta">
+                      <span>Clear Payments</span>
+                      <strong>AI suggests Chuck</strong>
+                    </div>
+                    <div class="row-links">
+                      <a href="#claimForm">Open Claim</a>
+                      <a href="customer-portal.html">Customer Portal</a>
+                      <a href="contractor-portal.html">Contractor Portal</a>
+                    </div>
+                  </article>
+                  <article class="claim-row watch">
+                    <div class="urgency-marker"><strong>Watch</strong><span>6 days</span></div>
+                    <div>
+                      <h4>Angela Morris</h4>
+                      <p>Supplement / Waiting on contractor revised roof estimate</p>
+                      <span>Contractor can upload estimate through portal link</span>
+                    </div>
+                    <div class="claim-row-meta">
+                      <span>Clear Records</span>
+                      <strong>AI suggests Cynthia</strong>
+                    </div>
+                    <div class="row-links">
+                      <a href="#claimForm">Open Claim</a>
+                      <a href="customer-portal.html">Customer Portal</a>
+                      <a href="contractor-portal.html">Contractor Portal</a>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="command-panel" aria-labelledby="reviewHeading">
+                <div class="panel-heading">
+                  <h3 id="reviewHeading">New Information to Review</h3>
+                  <span class="tag">Probation mode</span>
+                </div>
+                <div class="review-queue">
+                  <div><strong>7</strong><span>Outlook emails auto-filed to timeline</span></div>
+                  <div><strong>4</strong><span>Customer messages need visible summaries approved</span></div>
+                  <div><strong>3</strong><span>Contractor uploads need estimate comparison</span></div>
+                  <div><strong>2</strong><span>Payment documents need allocation review</span></div>
+                  <div><strong>2</strong><span>Tech-submitted leads need sales calls</span></div>
+                </div>
+              </section>
+
+              <section class="command-panel" aria-labelledby="todayHeading">
+                <div class="panel-heading">
+                  <h3 id="todayHeading">Today’s Work Plan</h3>
+                  <span class="tag">Confirm assignment</span>
+                </div>
+                <div class="task-stack">
+                  <label><input type="checkbox" /> Confirm AI assignments for critical requests</label>
+                  <label><input type="checkbox" /> Review Johnson carrier delay timeline</label>
+                  <label><input type="checkbox" /> Process Reed payment documents</label>
+                  <label><input type="checkbox" /> Approve customer-visible summaries</label>
+                  <label><input type="checkbox" /> Call new tech lead from yesterday</label>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <div class="summary-band">
+            <div>
+              <h2 id="claimHeading">Clear Advantage</h2>
+              <p id="claimSnapshotText"></p>
+            </div>
+            <div class="status-pill" id="claimStatusPill"></div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-tile">
+              <span>Days since loss</span>
+              <strong id="metricDaysSinceLoss">0</strong>
+            </div>
+            <div class="metric-tile">
+              <span>Documents</span>
+              <strong id="metricDocuments">0</strong>
+            </div>
+            <div class="metric-tile">
+              <span>Timeline entries</span>
+              <strong id="metricTimeline">0</strong>
+            </div>
+            <div class="metric-tile">
+              <span>Item estimate</span>
+              <strong id="metricInventory">$0</strong>
+            </div>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="claimForm">
+              <div class="panel-heading">
+                <h3>Clear Claim Details</h3>
+                <button class="icon-button" type="submit" title="Save claim details" aria-label="Save claim details">
+                  <svg><use href="#i-save"></use></svg>
+                </button>
+              </div>
+              <div class="form-grid">
+                <label>Homeowner name<input name="homeowner" autocomplete="name" /></label>
+                <label>Property address<input name="propertyAddress" autocomplete="street-address" /></label>
+                <label>Phone<input name="phone" autocomplete="tel" /></label>
+                <label>Email<input name="email" autocomplete="email" /></label>
+                <label>Carrier name<input name="carrier" /></label>
+                <label>Claim number<input name="claimNumber" /></label>
+                <label>Policy number<input name="policyNumber" /></label>
+                <label>Date of loss<input name="lossDate" type="date" /></label>
+                <label>Type of loss<input name="lossType" /></label>
+                <label>Status
+                  <select name="status">
+                    <option>Intake</option>
+                    <option>Policy Review</option>
+                    <option>Damage Review</option>
+                    <option>Carrier Review</option>
+                    <option>Payment Review</option>
+                    <option>Negotiation</option>
+                    <option>Supplement</option>
+                    <option>Escalation</option>
+                    <option>Resolved</option>
+                    <option>Closed</option>
+                  </select>
+                </label>
+                <label>Estimated loss amount<input name="estimatedLoss" type="number" min="0" step="100" /></label>
+                <label>Last carrier contact<input name="lastCarrierContact" type="date" /></label>
+              </div>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Deadlines</h3>
+                <button class="text-button compact" data-jump="timeline">
+                  <svg><use href="#i-plus"></use></svg><span>Add Date</span>
+                </button>
+              </div>
+              <div class="deadline-list" id="deadlineList"></div>
+              <p class="micro-copy">Dates are informational and depend on the facts of your claim. Verify deadlines with a licensed professional.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-documents" aria-labelledby="documentsHeading">
+          <div class="section-row">
+            <h2 id="documentsHeading">Clear Records</h2>
+            <button class="text-button" id="downloadDocumentIndex">
+              <svg><use href="#i-download"></use></svg><span>Download Index</span>
+            </button>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="documentForm">
+              <div class="panel-heading">
+                <h3>Add Clear Records</h3>
+                <span class="tag">Stored in this browser</span>
+              </div>
+              <label class="upload-zone">
+                <svg><use href="#i-upload"></use></svg>
+                <span>Select files</span>
+                <input name="files" type="file" multiple />
+              </label>
+              <div class="form-grid">
+                <label>Document type
+                  <select name="category">
+                    <option>Policy Documents</option>
+                    <option>Adjuster Reports</option>
+                    <option>Carrier Correspondence</option>
+                    <option>Proof of Loss</option>
+                    <option>Contractor Estimates</option>
+                    <option>Invoices & Receipts</option>
+                    <option>Legal Documents</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>Document date<input name="date" type="date" /></label>
+              </div>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-plus"></use></svg><span>Add to Claim</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Records Checklist</h3>
+              </div>
+              <div class="checklist" id="documentChecklist"></div>
+            </div>
+          </div>
+
+          <div class="table-panel">
+            <div class="data-table" id="documentTable"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-photos" aria-labelledby="photosHeading">
+          <div class="section-row">
+            <h2 id="photosHeading">Clear Evidence</h2>
+            <button class="text-button" id="downloadEvidencePackage">
+              <svg><use href="#i-download"></use></svg><span>Download Photo Log</span>
+            </button>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="photoForm">
+              <div class="panel-heading">
+                <h3>Add Clear Evidence</h3>
+              </div>
+              <label class="upload-zone">
+                <svg><use href="#i-camera"></use></svg>
+                <span>Select photos</span>
+                <input name="photos" type="file" accept="image/*" multiple />
+              </label>
+              <div class="form-grid">
+                <label>Area or room<input name="area" placeholder="Kitchen, roof, hallway" /></label>
+                <label>Category
+                  <select name="category">
+                    <option>Roof Damage</option>
+                    <option>Water Intrusion</option>
+                    <option>Structural Damage</option>
+                    <option>Personal Property</option>
+                    <option>Mold</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>Photo date<input name="date" type="date" /></label>
+                <label>Caption<input name="caption" /></label>
+              </div>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-plus"></use></svg><span>Add Photos</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Evidence Notes</h3>
+              </div>
+              <div class="photo-note-grid">
+                <div><strong>Keep originals</strong><span>Do not edit or delete the original files on your device.</span></div>
+                <div><strong>Add captions</strong><span>Use your own words to describe what each photo shows.</span></div>
+                <div><strong>Pair before/after</strong><span>Group photos by room or exterior area when possible.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-grid" id="photoGrid"></div>
+        </section>
+
+        <section class="view" id="view-timeline" aria-labelledby="timelineHeading">
+          <div class="section-row">
+            <h2 id="timelineHeading">Clear Process</h2>
+            <button class="text-button" id="downloadTimeline">
+              <svg><use href="#i-download"></use></svg><span>Download Timeline</span>
+            </button>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="timelineForm">
+              <div class="panel-heading">
+                <h3>Add Process Step</h3>
+              </div>
+              <div class="form-grid">
+                <label>Date<input name="date" type="date" required /></label>
+                <label>Type
+                  <select name="type">
+                    <option>Carrier Call</option>
+                    <option>Carrier Email</option>
+                    <option>Inspection</option>
+                    <option>Payment</option>
+                    <option>Deadline</option>
+                    <option>Repair Visit</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>Person or company<input name="contact" /></label>
+                <label>Response needed by<input name="responseDue" type="date" /></label>
+              </div>
+              <label>Notes<textarea name="notes" rows="4" required></textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-plus"></use></svg><span>Add Event</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Response Tracker</h3>
+              </div>
+              <div class="response-list" id="responseTracker"></div>
+            </div>
+          </div>
+
+          <div class="timeline-list" id="timelineList"></div>
+        </section>
+
+        <section class="view" id="view-inventory" aria-labelledby="inventoryHeading">
+          <div class="section-row">
+            <h2 id="inventoryHeading">Clear Inventory</h2>
+            <button class="text-button" id="downloadInventory">
+              <svg><use href="#i-download"></use></svg><span>Download CSV</span>
+            </button>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="inventoryForm">
+              <div class="panel-heading">
+                <h3>Add Inventory Item</h3>
+              </div>
+              <div class="form-grid">
+                <label>Item name<input name="name" required /></label>
+                <label>Room<input name="room" required /></label>
+                <label>Age in years<input name="age" type="number" min="0" step="1" /></label>
+                <label>Original cost<input name="purchasePrice" type="number" min="0" step="1" /></label>
+                <label>Replacement estimate<input name="replacementCost" type="number" min="0" step="1" required /></label>
+                <label>Model or serial<input name="serial" /></label>
+              </div>
+              <label>Notes<textarea name="notes" rows="3"></textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-plus"></use></svg><span>Add Item</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Item Suggestions</h3>
+                <button class="text-button compact" id="suggestRoomItems">
+                  <svg><use href="#i-plus"></use></svg><span>Suggest</span>
+                </button>
+              </div>
+              <div class="suggestion-list" id="suggestionList"></div>
+              <p class="micro-copy">Suggestions are placeholders for homeowner review. Confirm, edit, or reject each one before adding it.</p>
+            </div>
+          </div>
+
+          <div class="table-panel">
+            <div class="data-table" id="inventoryTable"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-policy" aria-labelledby="policyHeading">
+          <div class="section-row">
+            <h2 id="policyHeading">Clear Answers</h2>
+            <button class="text-button" id="savePolicy">
+              <svg><use href="#i-save"></use></svg><span>Save Policy Notes</span>
+            </button>
+          </div>
+
+          <div class="notice-band compact" role="note">
+            <svg><use href="#i-info"></use></svg>
+            <p>Policy summaries are for your reference. Read the full policy and ask a licensed insurance professional or attorney about coverage obligations.</p>
+          </div>
+
+          <div class="content-grid two policy-intake-grid">
+            <form class="panel feature-panel" id="policyUploadForm">
+              <div class="panel-heading">
+                <h3>Clear Policy Intake</h3>
+                <span class="tag">Local preview</span>
+              </div>
+              <label class="upload-zone premium">
+                <svg><use href="#i-upload"></use></svg>
+                <span>Select policy or declarations page</span>
+                <input name="policyFile" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.txt" />
+              </label>
+              <label>Or paste declarations text<textarea name="policyExtractText" rows="6" placeholder="Example: Coverage A $325,000&#10;Coverage B $32,500&#10;Coverage C $162,500&#10;Coverage D $65,000&#10;Deductible $2,500"></textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-file"></use></svg><span>Read Limits</span>
+              </button>
+              <p class="micro-copy">Prototype only: this reads pasted text and file names locally. Production OCR/AI parsing must run server-side with the blueprint guardrails.</p>
+            </form>
+
+            <div class="panel feature-panel">
+              <div class="panel-heading">
+                <h3>Clear Policy Fields</h3>
+              </div>
+              <div class="extraction-list" id="policyExtractionList"></div>
+              <p class="micro-copy">Review every detected value before relying on it. The homeowner controls the final policy notes.</p>
+            </div>
+          </div>
+
+          <div class="coverage-grid">
+            <label>Coverage A<input data-policy="coverageA" type="number" min="0" /></label>
+            <label>Coverage B<input data-policy="coverageB" type="number" min="0" /></label>
+            <label>Coverage C<input data-policy="coverageC" type="number" min="0" /></label>
+            <label>Coverage D<input data-policy="coverageD" type="number" min="0" /></label>
+            <label>Deductible<input data-policy="deductible" type="number" min="0" /></label>
+            <label>Policy period<input data-policy="policyPeriod" /></label>
+          </div>
+
+          <div class="content-grid two">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Policy Reader</h3>
+              </div>
+              <label>Paste policy language<textarea id="policyText" rows="7"></textarea></label>
+              <label>Question about that text<input id="policyQuestion" placeholder="What does this section say about deductibles?" /></label>
+              <button class="text-button primary" id="explainPolicyText">
+                <svg><use href="#i-file"></use></svg><span>Show Plain Language</span>
+              </button>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Explanation</h3>
+              </div>
+              <div class="explanation-box" id="policyExplanation"></div>
+            </div>
+          </div>
+
+          <div class="rights-library" id="rightsLibrary"></div>
+        </section>
+
+        <section class="view" id="view-letters" aria-labelledby="lettersHeading">
+          <div class="section-row">
+            <h2 id="lettersHeading">Clear Communications</h2>
+            <button class="text-button" id="downloadLetter" disabled>
+              <svg><use href="#i-download"></use></svg><span>Download Draft</span>
+            </button>
+          </div>
+
+          <div class="notice-band compact" role="note">
+            <svg><use href="#i-info"></use></svg>
+            <p>This content was drafted by AI for your review. It does not constitute insurance, legal, or financial advice. You are the author of any documents you submit. Please review all content carefully before use.</p>
+          </div>
+
+          <div class="content-grid two request-policy-grid">
+            <form class="panel feature-panel" id="policyRequestForm">
+              <div class="panel-heading">
+                <h3>Clear Policy Request</h3>
+                <span class="tag">Agent or adjuster</span>
+              </div>
+              <div class="form-grid">
+                <label>Recipient name<input name="recipient" placeholder="Agent or adjuster name" /></label>
+                <label>Send as
+                  <select name="channel">
+                    <option value="email">Email</option>
+                    <option value="letter">Letter</option>
+                    <option value="text">Text message</option>
+                  </select>
+                </label>
+              </div>
+              <label>What you need<textarea name="requestDetails" rows="4">Please send me a complete copy of my homeowner policy, including the declarations page, endorsements, exclusions, and all forms that apply to my current policy period.</textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-pen"></use></svg><span>Create Request</span>
+              </button>
+            </form>
+
+            <div class="panel feature-panel">
+              <div class="panel-heading">
+                <h3>Clear Request Preview</h3>
+                <button class="text-button compact" id="downloadPolicyRequest" disabled>
+                  <svg><use href="#i-download"></use></svg><span>Download</span>
+                </button>
+              </div>
+              <article class="message-preview" id="policyRequestPreview" aria-live="polite"></article>
+            </div>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="letterForm">
+              <div class="panel-heading">
+                <h3>Clear Communication Draft</h3>
+              </div>
+              <label>Template
+                <select name="template">
+                  <option value="status">Status update request</option>
+                  <option value="denial">Request for written denial explanation</option>
+                  <option value="payment">Dispute of partial payment</option>
+                  <option value="proof">Proof of loss cover letter</option>
+                </select>
+              </label>
+              <div class="form-grid">
+                <label>Carrier contact<input name="contact" /></label>
+                <label>Tone
+                  <select name="tone">
+                    <option>Neutral and professional</option>
+                    <option>Firm and professional</option>
+                  </select>
+                </label>
+              </div>
+              <label>Facts in your words<textarea name="facts" rows="5" required></textarea></label>
+              <label>What you want explained or provided<textarea name="request" rows="4" required></textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-pen"></use></svg><span>Create Draft</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Review</h3>
+              </div>
+              <div id="letterReview"></div>
+              <label class="cert-row">
+                <input type="checkbox" id="letterCertification" />
+                <span>I certify that I have reviewed every statement in this document, that all statements reflect my own understanding of the facts, and that I am submitting this document as the author on my own behalf.</span>
+              </label>
+            </div>
+          </div>
+
+          <article class="draft-preview" id="letterPreview" aria-live="polite"></article>
+        </section>
+
+        <section class="view" id="view-doi" aria-labelledby="doiHeading">
+          <div class="section-row">
+            <h2 id="doiHeading">Clear Results</h2>
+            <button class="text-button" id="downloadDoiPacket" disabled>
+              <svg><use href="#i-download"></use></svg><span>Download Packet</span>
+            </button>
+          </div>
+
+          <div class="notice-band compact" role="note">
+            <svg><use href="#i-info"></use></svg>
+            <p>The NC DOI can investigate complaints, but it cannot order a specific claim payment, represent you, or give legal advice.</p>
+          </div>
+
+          <div class="doi-grid">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Results Screener</h3>
+              </div>
+              <form id="doiScreener" class="stacked-form">
+                <fieldset>
+                  <legend>Have you filed the claim with your carrier?</legend>
+                  <label><input type="radio" name="filed" value="yes" /> Yes</label>
+                  <label><input type="radio" name="filed" value="no" /> No</label>
+                </fieldset>
+                <fieldset>
+                  <legend>Has the carrier sent a denial or partial payment in writing?</legend>
+                  <label><input type="radio" name="written" value="yes" /> Yes</label>
+                  <label><input type="radio" name="written" value="no" /> No</label>
+                </fieldset>
+                <fieldset>
+                  <legend>Do you have documents or timeline notes to attach?</legend>
+                  <label><input type="radio" name="records" value="yes" /> Yes</label>
+                  <label><input type="radio" name="records" value="no" /> No</label>
+                </fieldset>
+              </form>
+              <div class="screener-result" id="doiScreenerResult"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear DOI Limits</h3>
+              </div>
+              <div class="can-cannot">
+                <div>
+                  <strong>Can</strong>
+                  <span>Review unfair claims practice complaints</span>
+                  <span>Require carrier responses</span>
+                  <span>Track carrier patterns</span>
+                </div>
+                <div>
+                  <strong>Cannot</strong>
+                  <span>Order a specific payment</span>
+                  <span>Act as your representative</span>
+                  <span>Give legal advice</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-grid two">
+            <form class="panel" id="doiForm">
+              <div class="panel-heading">
+                <h3>Clear Complaint Narrative</h3>
+              </div>
+              <label>What happened?<textarea name="whatHappened" rows="4" required></textarea></label>
+              <label>What did the carrier do or fail to do?<textarea name="carrierIssue" rows="4" required></textarea></label>
+              <label>What outcome are you asking DOI to review?<textarea name="requestedOutcome" rows="3" required></textarea></label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-file"></use></svg><span>Create Packet Preview</span>
+              </button>
+            </form>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>Clear Packet Checklist</h3>
+              </div>
+              <div class="checklist" id="doiChecklist"></div>
+              <label class="cert-row">
+                <input type="checkbox" id="doiCertification" />
+                <span>I certify that I reviewed this complaint packet and that I am submitting it myself.</span>
+              </label>
+            </div>
+          </div>
+
+          <article class="draft-preview" id="doiPreview" aria-live="polite"></article>
+          <div class="submission-list" id="submissionChannels"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js?v=10"></script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clear Purpose | ClearClaims Prototype</title>
+    <link rel="stylesheet" href="styles.css?v=15" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body class="purpose-page">
+    <svg aria-hidden="true" class="icon-sprite">
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9.5 20v-6h5v6"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 6.5h6l2 2h9v9a2 2 0 0 1-2 2h-15z"/><path d="M3.5 6.5v13"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5h4l1.5-2h5L16 8.5h4v11H4z"/><circle cx="12" cy="14" r="3.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="m4 7.5 8-4 8 4-8 4z"/><path d="M4 7.5v9l8 4 8-4v-9"/><path d="M12 11.5v9"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4"/><path d="M9.5 12h5"/><path d="M9.5 15h5"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.5-2.9 7.6-7 9-4.1-1.4-7-4.5-7-9V6z"/><path d="m8.8 12.2 2.1 2.1 4.4-5"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.5v5"/><path d="M12 7.5h.01"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V9"/><path d="m8 13 4-4 4 4"/><path d="M5 5h14"/></symbol>
+    </svg>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="assets/clearclaims_appicon_final.png" alt="" />
+          </div>
+          <div>
+            <div class="brand-name">ClearClaims</div>
+            <div class="brand-subtitle">© 2026 ClearClaims</div>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <a class="nav-link" href="index.html#claim"><svg><use href="#i-home"></use></svg><span>Clear Advantage</span></a>
+          <a class="nav-link" href="index.html#documents"><svg><use href="#i-folder"></use></svg><span>Clear Records</span></a>
+          <a class="nav-link" href="index.html#photos"><svg><use href="#i-camera"></use></svg><span>Clear Evidence</span></a>
+          <a class="nav-link" href="index.html#timeline"><svg><use href="#i-clock"></use></svg><span>Clear Process</span></a>
+          <a class="nav-link" href="index.html#inventory"><svg><use href="#i-box"></use></svg><span>Clear Inventory</span></a>
+          <a class="nav-link" href="index.html#policy"><svg><use href="#i-file"></use></svg><span>Clear Answers</span></a>
+          <a class="nav-link" href="index.html#letters"><svg><use href="#i-pen"></use></svg><span>Clear Communications</span></a>
+          <a class="nav-link" href="index.html#doi"><svg><use href="#i-shield"></use></svg><span>Clear Results</span></a>
+          <a class="nav-link active" href="clear-purpose.html"><svg><use href="#i-info"></use></svg><span>Clear Purpose</span></a>
+        </nav>
+
+        <div class="side-summary">
+          <div class="side-label">Prototype direction</div>
+          <strong>Internal hub + client portal</strong>
+          <span>Built around clear records, requests, timers, and reports.</span>
+        </div>
+      </aside>
+
+      <main class="workspace purpose-workspace">
+        <section class="purpose-hero" aria-labelledby="purposeTitle">
+          <div>
+            <p class="eyebrow">About the system</p>
+            <h1 id="purposeTitle">Clear Purpose</h1>
+            <p>ClearClaims is a customer service hub for homeowners, contractors, and public adjusters: a role-based workspace, client portal, contractor portal, and evidence engine built around one clear record of the claim.</p>
+          </div>
+          <img src="assets/clearclaims_appicon_final.png" alt="" aria-hidden="true" />
+        </section>
+
+        <section class="purpose-split" aria-label="ClearClaims purpose">
+          <article class="purpose-panel">
+            <p class="eyebrow">What it is</p>
+            <h2>A claim hub for the people doing the work.</h2>
+            <p>Chuck and Cynthia need one place to see what changed, who owes information, which claims are urgent, and what action should happen next.</p>
+          </article>
+          <article class="purpose-panel">
+            <p class="eyebrow">Why it matters</p>
+            <h2>Every request becomes part of the record.</h2>
+            <p>Emails, uploads, iMessages, payments, and portal messages create a timeline that can support customer updates, daily work planning, and future DOI complaint reports.</p>
+          </article>
+        </section>
+
+        <section class="purpose-section vmv-showcase" aria-labelledby="vmvHeading">
+          <div class="section-row">
+            <div>
+              <p class="eyebrow">North Star</p>
+              <h2 id="vmvHeading">Vision, Mission, and Core Values</h2>
+            </div>
+          </div>
+          <figure class="vmv-frame">
+            <img src="assets/clearclaims-vmv.png" alt="ClearClaims Vision, Mission, and Core Values" />
+          </figure>
+        </section>
+
+        <section class="purpose-section" aria-labelledby="spacesHeading">
+          <div class="section-row">
+            <div>
+              <p class="eyebrow">Spaces</p>
+              <h2 id="spacesHeading">Different users. Different views. One claim record.</h2>
+            </div>
+          </div>
+          <div class="purpose-card-grid">
+            <article class="purpose-card">
+              <span>01</span>
+              <h3>Work Hub</h3>
+              <p>Claim urgency first, with review queues for new emails, uploads, messages, payments, lead activity, and AI-suggested tasks.</p>
+            </article>
+            <article class="purpose-card">
+              <span>02</span>
+              <h3>Customer Dashboard</h3>
+              <p>Claim status, timeline summary, signed documents, messages, exact request age, and who is expected to provide information.</p>
+            </article>
+            <article class="purpose-card">
+              <span>03</span>
+              <h3>Contractor Portal</h3>
+              <p>Multi-claim contractor accounts for uploads, invoices, estimates, photos, update requests, and limited timeline context.</p>
+            </article>
+            <article class="purpose-card">
+              <span>04</span>
+              <h3>Carrier Request Links</h3>
+              <p>No carrier portal account in v1. Adjusters receive controlled upload or request links that show only what is formally requested.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="purpose-section" aria-labelledby="clearCategoriesHeading">
+          <div class="section-row">
+            <div>
+              <p class="eyebrow">Clear categories</p>
+              <h2 id="clearCategoriesHeading">The work stays organized by purpose.</h2>
+            </div>
+          </div>
+          <div class="category-strip">
+            <div><strong>Clear Advantage</strong><span>Daily dashboard</span></div>
+            <div><strong>Clear Records</strong><span>Documents, email, iMessages</span></div>
+            <div><strong>Clear Evidence</strong><span>Timeline, requests, facts</span></div>
+            <div><strong>Clear Communications</strong><span>Customer and contractor updates</span></div>
+            <div><strong>Clear Payments</strong><span>Checks, allocations, review</span></div>
+            <div><strong>Clear Process</strong><span>Status, phase, next step</span></div>
+            <div><strong>Clear Results</strong><span>DOI-ready reports</span></div>
+            <div><strong>Clear Opportunities</strong><span>Leads and sales follow-up</span></div>
+          </div>
+        </section>
+
+        <section class="purpose-section" aria-labelledby="workflowHeading">
+          <div class="section-row">
+            <div>
+              <p class="eyebrow">Working model</p>
+              <h2 id="workflowHeading">Simple for users. Disciplined underneath.</h2>
+            </div>
+          </div>
+          <div class="workflow-rail">
+            <article>
+              <span>New information arrives</span>
+              <p>Outlook email, portal message, document upload, iMessage, payment record, or lead submission.</p>
+            </article>
+            <article>
+              <span>AI files and summarizes</span>
+              <p>The system suggests claim matching, timeline events, task ownership, document names, and next action.</p>
+            </article>
+            <article>
+              <span>Account owner confirms during probation</span>
+              <p>Cynthia and Chuck approve assignments, customer-facing summaries, and any high-risk language before use.</p>
+            </article>
+            <article>
+              <span>The record becomes evidence</span>
+              <p>Requests, delays, payment history, and carrier responses can support a plain-language homeowner DOI complaint packet.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="purpose-callout" aria-label="ClearClaims promise">
+          <p>ClearClaims should feel simple on the surface: what changed, who owes what, how long it has been, and what happens next.</p>
+          <a class="text-button primary" href="index.html#claim"><svg><use href="#i-check"></use></svg><span>Return to Prototype</span></a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contractor Portal Preview | ClearClaims</title>
+    <link rel="stylesheet" href="styles.css?v=15" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body class="portal-preview">
+    <svg aria-hidden="true" class="icon-sprite">
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V9"/><path d="m8 13 4-4 4 4"/><path d="M5 5h14"/></symbol>
+    </svg>
+    <main class="portal-shell">
+      <header class="portal-topbar">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="assets/clearclaims_appicon_final.png" alt="" />
+          </div>
+          <div>
+            <div class="brand-name">ClearClaims</div>
+            <div class="brand-subtitle">Contractor portal preview</div>
+          </div>
+        </div>
+        <a class="text-button" href="index.html">Account Login</a>
+      </header>
+
+      <section class="portal-hero">
+        <div>
+          <p class="eyebrow">Maya Johnson claim</p>
+          <h1>Clear uploads and claim context for contractors.</h1>
+          <p>This limited contractor view shows the timeline summary, what is blocking progress, who owes information, and the upload area for estimates, invoices, and photos.</p>
+        </div>
+        <div class="portal-status">
+          <span>Contractor account</span>
+          <strong>Multi-claim access</strong>
+          <small>No payment ledger or internal strategy shown</small>
+        </div>
+      </section>
+
+      <section class="portal-grid">
+        <article class="portal-panel">
+          <h2>Requested from contractor</h2>
+          <div class="portal-wait-row watch">
+            <strong>Revised estimate</strong>
+            <span>Roof scope with line-item totals and supporting photos</span>
+            <em>6 days open</em>
+          </div>
+          <div class="portal-wait-row">
+            <strong>Invoice backup</strong>
+            <span>Any temporary repair receipts or mitigation invoices</span>
+            <em>New</em>
+          </div>
+        </article>
+
+        <article class="portal-panel">
+          <h2>Upload files</h2>
+          <label class="upload-zone">
+            <svg><use href="#i-upload"></use></svg>
+            <span>Upload estimate, invoice, or photos</span>
+            <input type="file" multiple />
+          </label>
+        </article>
+
+        <article class="portal-panel">
+          <h2>Timeline summary</h2>
+          <ol class="portal-timeline">
+            <li><span>May 2</span> Carrier inspection completed.</li>
+            <li><span>May 6</span> Contractor estimate uploaded.</li>
+            <li><span>May 15</span> Revised estimate requested.</li>
+            <li><span>Today</span> Waiting on contractor upload before next supplement step.</li>
+          </ol>
+        </article>
+
+        <article class="portal-panel">
+          <h2>Request an update</h2>
+          <p>Contractors can request an update without seeing internal notes, payment allocation, or carrier strategy.</p>
+          <button class="text-button primary">Request Update</button>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

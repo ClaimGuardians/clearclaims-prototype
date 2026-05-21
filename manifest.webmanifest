@@ -1,0 +1,9 @@
+{
+  "name": "ClearClaims Prototype",
+  "short_name": "ClearClaims",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f8fb",
+  "theme_color": "#0f7f6e",
+  "description": "Customer prototype for the ClearClaims homeowner claim workspace."
+}
