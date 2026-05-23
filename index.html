@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ClearClaims Prototype</title>
-    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="stylesheet" href="styles.css?v=17" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="manifest" href="manifest.webmanifest" />
   </head>
@@ -55,43 +55,78 @@
             <div><svg><use href="#i-shield"></use></svg><strong>Clear Results</strong><span>Build a useful claim record.</span></div>
             <div><svg><use href="#i-info"></use></svg><strong>Clear Purpose</strong><span>Keep everyone aligned.</span></div>
           </div>
-          <div class="software-paths" aria-label="ClearClaims product paths">
-            <article class="software-card">
-              <div class="software-card-heading">
+          <section class="role-finder" aria-labelledby="roleFinderHeading">
+            <div>
+              <p class="eyebrow">Find your workspace</p>
+              <h2 id="roleFinderHeading">Answer what you need ClearClaims to do.</h2>
+              <p>Choose the question that fits. ClearClaims will show only the matching benefits and pricing.</p>
+            </div>
+            <div class="role-question-grid">
+              <button class="role-question-card" type="button" data-path-select="claimant" aria-pressed="false">
+                <span>Are you managing your own claim?</span>
                 <strong>ClearClaims for Claimants</strong>
-                <span>Self-service claim organization</span>
-              </div>
-              <p>$14/week for basic claim management, policy understanding, document organization, and guided next-step prompts.</p>
-              <button class="tier-button selected" type="button" data-plan-select="claimant-weekly" data-plan-role="Homeowner">
-                <strong>Claimant Weekly</strong><span>$14/week</span>
               </button>
-            </article>
-
-            <article class="software-card">
-              <div class="software-card-heading">
-                <strong>ClearClaims for Public Adjusters</strong>
-                <span>PA-managed claim workspace</span>
-              </div>
-              <p>PA-managed claims include claimant access at no additional claimant charge.</p>
-              <div class="tier-list">
-                <button class="tier-button" type="button" data-plan-select="pa-starter" data-plan-role="Public Adjuster"><strong>PA Starter</strong><span>$99/month · 1-20 active claims</span></button>
-                <button class="tier-button" type="button" data-plan-select="pa-growth" data-plan-role="Public Adjuster"><strong>PA Growth</strong><span>$249/month · 21-75 active claims</span></button>
-                <button class="tier-button" type="button" data-plan-select="pa-scale" data-plan-role="Public Adjuster"><strong>PA Scale</strong><span>$499/month · 76-200 active claims</span></button>
-                <button class="tier-button" type="button" data-plan-select="pa-enterprise" data-plan-role="Public Adjuster"><strong>PA Enterprise</strong><span>Custom pricing · 201+ active claims</span></button>
-              </div>
-            </article>
-
-            <article class="software-card">
-              <div class="software-card-heading">
+              <button class="role-question-card" type="button" data-path-select="contractor" aria-pressed="false">
+                <span>Are you managing repair jobs or claim-related invoices?</span>
                 <strong>ClearClaims for Contractors</strong>
-                <span>Active job management</span>
+              </button>
+              <button class="role-question-card" type="button" data-path-select="pa" aria-pressed="false">
+                <span>Are you managing claims for insureds as a public adjuster?</span>
+                <strong>ClearClaims for Public Adjusters</strong>
+              </button>
+            </div>
+          </section>
+
+          <div class="role-detail-stack" aria-live="polite">
+            <article class="role-detail-panel" data-path-panel="claimant">
+              <div>
+                <p class="eyebrow">ClearClaims for Claimants</p>
+                <h2>Organize the claim without becoming overwhelmed.</h2>
+                <p>For people managing their own claim, ClearClaims keeps the timeline, policy questions, documents, and next steps in one guided workspace.</p>
               </div>
-              <p>Manage assigned claim-related jobs, estimates, invoices, submissions, status requests, and contractor reports.</p>
+              <div class="benefit-grid">
+                <div><strong>Benefits</strong><span>Claim timeline, document uploads, policy explanations, weekly next-step prompts.</span></div>
+                <div><strong>Different</strong><span>Built around the claim record, not generic file storage or a simple task app.</span></div>
+              </div>
+              <div class="tier-list">
+                <button class="tier-button" type="button" data-plan-select="claimant-weekly" data-plan-role="Homeowner"><strong>Claimant Weekly</strong><span>$14/week · self-service claim management</span></button>
+                <button class="tier-button" type="button" data-plan-select="claimant-pa-included" data-plan-role="Homeowner"><strong>PA-Managed Claimant Access</strong><span>Included · free when your PA uses ClearClaims</span></button>
+              </div>
+            </article>
+
+            <article class="role-detail-panel" data-path-panel="contractor">
+              <div>
+                <p class="eyebrow">ClearClaims for Contractors</p>
+                <h2>Manage active claim jobs without seeing private claim strategy.</h2>
+                <p>For contractors, ClearClaims keeps estimates, invoices, submissions, reports, and waiting-on status tied to active jobs/claims.</p>
+              </div>
+              <div class="benefit-grid">
+                <div><strong>Benefits</strong><span>Assigned jobs, estimate and invoice uploads, contractor communications, submission history.</span></div>
+                <div><strong>Different</strong><span>Contractors see the work they are part of, not PA-customer or PA-adjuster private communications.</span></div>
+              </div>
               <div class="tier-list">
                 <button class="tier-button" type="button" data-plan-select="contractor-starter" data-plan-role="Contractor"><strong>Contractor Starter</strong><span>$299/month · 1-10 active jobs</span></button>
                 <button class="tier-button" type="button" data-plan-select="contractor-growth" data-plan-role="Contractor"><strong>Contractor Growth</strong><span>$749/month · 11-50 active jobs/claims</span></button>
                 <button class="tier-button" type="button" data-plan-select="contractor-scale" data-plan-role="Contractor"><strong>Contractor Scale</strong><span>$1,249/month · 51-200 active jobs/claims</span></button>
                 <button class="tier-button" type="button" data-plan-select="contractor-enterprise" data-plan-role="Contractor"><strong>Contractor Enterprise</strong><span>Custom pricing · 201+ active jobs/claims</span></button>
+              </div>
+            </article>
+
+            <article class="role-detail-panel" data-path-panel="pa">
+              <div>
+                <p class="eyebrow">ClearClaims for Public Adjusters</p>
+                <h2>Run every claim from the complete record.</h2>
+                <p>For PAs, ClearClaims gives the highest access level for claim workflow, evidence, linked claimant access, contractor coordination, and claim history.</p>
+              </div>
+              <div class="benefit-grid">
+                <div><strong>Benefits</strong><span>Claim portfolio, linked claimant and contractor activity, communications, evidence, and reporting.</span></div>
+                <div><strong>Different</strong><span>PA-managed claimants get included access, so the claim team works from one shared source of truth.</span></div>
+              </div>
+              <div class="tier-list">
+                <button class="tier-button" type="button" data-plan-select="pa-starter" data-plan-role="Public Adjuster"><strong>PA Starter</strong><span>$99/month · 1-20 active claims</span></button>
+                <button class="tier-button" type="button" data-plan-select="pa-growth" data-plan-role="Public Adjuster"><strong>PA Growth</strong><span>$249/month · 21-75 active claims</span></button>
+                <button class="tier-button" type="button" data-plan-select="pa-scale" data-plan-role="Public Adjuster"><strong>PA Scale</strong><span>$499/month · 76-200 active claims</span></button>
+                <button class="tier-button" type="button" data-plan-select="pa-enterprise" data-plan-role="Public Adjuster"><strong>PA Enterprise</strong><span>Custom pricing · 201+ active claims</span></button>
               </div>
             </article>
           </div>
@@ -157,11 +192,11 @@
             <p class="micro-copy">Contractor company accounts can add team members who share the primary company email domain.</p>
             <button class="text-button" type="submit">Create Account Preview</button>
           </form>
-          <div class="checkout-panel" aria-live="polite">
+          <div class="checkout-panel is-hidden" aria-live="polite">
             <p class="eyebrow">Simulated checkout</p>
-            <h3 id="checkoutPlanName">Claimant Weekly</h3>
-            <strong id="checkoutPlanPrice">$14/week</strong>
-            <p id="checkoutPlanDetail">Basic self-service claim organization with weekly renewal prompts until the claim closes.</p>
+            <h3 id="checkoutPlanName">Choose a ClearClaims path</h3>
+            <strong id="checkoutPlanPrice">Plan pending</strong>
+            <p id="checkoutPlanDetail">Select the role that fits you, then choose a pricing option.</p>
             <button class="text-button primary" type="button" id="confirmCheckout">Confirm Plan Preview</button>
           </div>
         </div>
@@ -915,6 +950,6 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=12"></script>
   </body>
 </html>

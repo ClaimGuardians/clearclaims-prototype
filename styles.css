@@ -267,6 +267,108 @@ svg {
   padding: 7px 10px;
 }
 
+.role-finder {
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(37, 174, 232, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.6);
+  padding: 16px;
+}
+
+.role-finder h2,
+.role-detail-panel h2 {
+  margin: 4px 0 8px;
+  color: var(--accent-dark);
+}
+
+.role-question-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.role-question-card {
+  display: grid;
+  gap: 8px;
+  min-height: 126px;
+  border: 1px solid rgba(37, 174, 232, 0.22);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(232, 247, 253, 0.68));
+  color: var(--ink);
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(23, 52, 68, 0.06);
+}
+
+.role-question-card:hover,
+.role-question-card.selected {
+  border-color: rgba(4, 189, 179, 0.58);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(215, 248, 246, 0.82));
+  box-shadow: 0 18px 36px rgba(4, 94, 112, 0.11);
+  transform: translateY(-1px);
+}
+
+.role-question-card span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.role-question-card strong {
+  align-self: end;
+  color: var(--accent-dark);
+}
+
+.role-detail-stack {
+  display: grid;
+}
+
+.role-detail-panel {
+  display: none;
+  gap: 16px;
+  border: 1px solid rgba(4, 189, 179, 0.22);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(232, 247, 253, 0.62));
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.role-detail-panel.active {
+  display: grid;
+}
+
+.role-detail-panel p,
+.benefit-grid span {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.benefit-grid div {
+  display: grid;
+  gap: 5px;
+  border: 1px solid rgba(37, 174, 232, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.68);
+  padding: 12px;
+}
+
+.benefit-grid strong {
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-size: 0.76rem;
+}
+
 .software-paths {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -339,6 +441,10 @@ svg {
   border-radius: var(--radius);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(215, 248, 246, 0.68));
   padding: 14px;
+}
+
+.checkout-panel.is-hidden {
+  display: none;
 }
 
 .checkout-panel strong {
@@ -1952,6 +2058,7 @@ svg {
   .category-strip,
   .workflow-rail,
   .command-metrics,
+  .role-question-grid,
   .software-paths,
   .portal-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2108,6 +2215,8 @@ svg {
   .category-strip,
   .workflow-rail,
   .command-metrics,
+  .role-question-grid,
+  .benefit-grid,
   .software-paths,
   .portal-grid {
     grid-template-columns: 1fr;

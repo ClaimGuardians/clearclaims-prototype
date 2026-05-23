@@ -8,6 +8,12 @@ const PLAN_OPTIONS = {
     role: "Homeowner",
     detail: "Basic self-service claim organization with weekly renewal prompts until the claim closes.",
   },
+  "claimant-pa-included": {
+    name: "PA-Managed Claimant Access",
+    price: "Included",
+    role: "Homeowner",
+    detail: "Free claimant access when the homeowner is working with a public adjuster who already uses ClearClaims.",
+  },
   "pa-starter": {
     name: "PA Starter",
     price: "$99/month",
@@ -55,6 +61,24 @@ const PLAN_OPTIONS = {
     price: "Custom pricing",
     role: "Contractor",
     detail: "For contractors managing 201+ active jobs/claims with enterprise support needs.",
+  },
+};
+
+const PATH_OPTIONS = {
+  claimant: {
+    name: "Claimants",
+    role: "Homeowner",
+    defaultPlanId: "claimant-weekly",
+  },
+  contractor: {
+    name: "Contractors",
+    role: "Contractor",
+    defaultPlanId: "contractor-starter",
+  },
+  pa: {
+    name: "Public Adjusters",
+    role: "Public Adjuster",
+    defaultPlanId: "pa-starter",
   },
 };
 
@@ -248,7 +272,8 @@ const seedState = {
 
 let state = loadState();
 let session = loadSession();
-let selectedPlanId = "claimant-weekly";
+let selectedPathId = null;
+let selectedPlanId = null;
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -346,6 +371,9 @@ function selectPlan(planId) {
   if (!plan) return;
   selectedPlanId = planId;
 
+  const checkoutPanel = $(".checkout-panel");
+  if (checkoutPanel) checkoutPanel.classList.remove("is-hidden");
+
   const checkoutName = $("#checkoutPlanName");
   const checkoutPrice = $("#checkoutPlanPrice");
   const checkoutDetail = $("#checkoutPlanDetail");
@@ -360,6 +388,30 @@ function selectPlan(planId) {
 
   const status = $("#authStatus");
   if (status) status.textContent = `${plan.name} selected for checkout preview.`;
+}
+
+function selectPath(pathId) {
+  const path = PATH_OPTIONS[pathId];
+  if (!path) return;
+  selectedPathId = pathId;
+
+  $$("[data-path-select]").forEach((button) => {
+    const isSelected = button.dataset.pathSelect === pathId;
+    button.classList.toggle("selected", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
+
+  $$("[data-path-panel]").forEach((panel) => {
+    panel.classList.toggle("active", panel.dataset.pathPanel === pathId);
+  });
+
+  const roleSelect = $("#createAccountForm")?.elements.role;
+  if (roleSelect) roleSelect.value = path.role;
+
+  selectPlan(path.defaultPlanId);
+
+  const status = $("#authStatus");
+  if (status) status.textContent = `ClearClaims for ${path.name} selected. Review the matching benefits and pricing.`;
 }
 
 function activeClaim() {
@@ -771,10 +823,15 @@ function setupEvents() {
   });
 
   $$("[data-account-login]").forEach((button) => button.addEventListener("click", () => signInAccount(button.dataset.accountLogin)));
+  $$("[data-path-select]").forEach((button) => button.addEventListener("click", () => selectPath(button.dataset.pathSelect)));
   $$("[data-plan-select]").forEach((button) => button.addEventListener("click", () => selectPlan(button.dataset.planSelect)));
 
   $("#confirmCheckout").addEventListener("click", () => {
     const plan = PLAN_OPTIONS[selectedPlanId];
+    if (!plan) {
+      $("#authStatus").textContent = "Choose a ClearClaims path and pricing option first.";
+      return;
+    }
     $("#authStatus").textContent = `${plan.name} checkout confirmed in prototype mode. No payment was processed.`;
   });
 
@@ -782,7 +839,8 @@ function setupEvents() {
     event.preventDefault();
     const data = readForm(event.currentTarget);
     const plan = PLAN_OPTIONS[selectedPlanId];
-    $("#authStatus").textContent = `${data.name}'s ${data.role} account preview is ready with ${plan.name}. In production, this role and plan will control the starting workspace after login.`;
+    const planName = plan ? plan.name : "a plan selected after role review";
+    $("#authStatus").textContent = `${data.name}'s ${data.role} account preview is ready with ${planName}. In production, this role and plan will control the starting workspace after login.`;
     event.currentTarget.reset();
   });
 
