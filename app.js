@@ -1,6 +1,63 @@
 const STORAGE_KEY = "clearclaims.prototype.state.v1";
 const SESSION_KEY = "clearclaims.prototype.accountSession.v1";
 
+const PLAN_OPTIONS = {
+  "claimant-weekly": {
+    name: "Claimant Weekly",
+    price: "$14/week",
+    role: "Homeowner",
+    detail: "Basic self-service claim organization with weekly renewal prompts until the claim closes.",
+  },
+  "pa-starter": {
+    name: "PA Starter",
+    price: "$99/month",
+    role: "Public Adjuster",
+    detail: "For public adjusters managing 1-20 active claims. Claimant access is included for PA-managed claims.",
+  },
+  "pa-growth": {
+    name: "PA Growth",
+    price: "$249/month",
+    role: "Public Adjuster",
+    detail: "For public adjusters managing 21-75 active claims. Claimant access is included for PA-managed claims.",
+  },
+  "pa-scale": {
+    name: "PA Scale",
+    price: "$499/month",
+    role: "Public Adjuster",
+    detail: "For public adjusters managing 76-200 active claims. Claimant access is included for PA-managed claims.",
+  },
+  "pa-enterprise": {
+    name: "PA Enterprise",
+    price: "Custom pricing",
+    role: "Public Adjuster",
+    detail: "For public adjusters managing 201+ active claims with enterprise support needs.",
+  },
+  "contractor-starter": {
+    name: "Contractor Starter",
+    price: "$299/month",
+    role: "Contractor",
+    detail: "For contractors managing 1-10 active claim-related jobs.",
+  },
+  "contractor-growth": {
+    name: "Contractor Growth",
+    price: "$749/month",
+    role: "Contractor",
+    detail: "For contractors managing 11-50 active jobs/claims.",
+  },
+  "contractor-scale": {
+    name: "Contractor Scale",
+    price: "$1,249/month",
+    role: "Contractor",
+    detail: "For contractors managing 51-200 active jobs/claims.",
+  },
+  "contractor-enterprise": {
+    name: "Contractor Enterprise",
+    price: "Custom pricing",
+    role: "Contractor",
+    detail: "For contractors managing 201+ active jobs/claims with enterprise support needs.",
+  },
+};
+
 const USER_PROFILES = {
   customer: {
     id: "customer",
@@ -19,8 +76,8 @@ const USER_PROFILES = {
     role: "Contractor Company",
     defaultView: "documents",
     assignedArea: "Clear Records",
-    focus: "Upload estimates, invoices, photos, and requested claim information",
-    headline: "Upload what the claim needs next.",
+    focus: "Manage active jobs, estimates, invoices, photos, and requested claim information",
+    headline: "Upload what each active job needs next.",
   },
   adjuster: {
     id: "adjuster",
@@ -191,6 +248,7 @@ const seedState = {
 
 let state = loadState();
 let session = loadSession();
+let selectedPlanId = "claimant-weekly";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -281,6 +339,27 @@ function applySession(options = {}) {
   if (options.route || !window.location.hash) {
     setView(profile.defaultView);
   }
+}
+
+function selectPlan(planId) {
+  const plan = PLAN_OPTIONS[planId];
+  if (!plan) return;
+  selectedPlanId = planId;
+
+  const checkoutName = $("#checkoutPlanName");
+  const checkoutPrice = $("#checkoutPlanPrice");
+  const checkoutDetail = $("#checkoutPlanDetail");
+  if (checkoutName) checkoutName.textContent = plan.name;
+  if (checkoutPrice) checkoutPrice.textContent = plan.price;
+  if (checkoutDetail) checkoutDetail.textContent = plan.detail;
+
+  $$("[data-plan-select]").forEach((button) => button.classList.toggle("selected", button.dataset.planSelect === planId));
+
+  const roleSelect = $("#createAccountForm")?.elements.role;
+  if (roleSelect && plan.role) roleSelect.value = plan.role;
+
+  const status = $("#authStatus");
+  if (status) status.textContent = `${plan.name} selected for checkout preview.`;
 }
 
 function activeClaim() {
@@ -692,11 +771,18 @@ function setupEvents() {
   });
 
   $$("[data-account-login]").forEach((button) => button.addEventListener("click", () => signInAccount(button.dataset.accountLogin)));
+  $$("[data-plan-select]").forEach((button) => button.addEventListener("click", () => selectPlan(button.dataset.planSelect)));
+
+  $("#confirmCheckout").addEventListener("click", () => {
+    const plan = PLAN_OPTIONS[selectedPlanId];
+    $("#authStatus").textContent = `${plan.name} checkout confirmed in prototype mode. No payment was processed.`;
+  });
 
   $("#createAccountForm").addEventListener("submit", (event) => {
     event.preventDefault();
     const data = readForm(event.currentTarget);
-    $("#authStatus").textContent = `${data.name}'s ${data.role} account preview is ready. In production, this role will control the starting workspace after login.`;
+    const plan = PLAN_OPTIONS[selectedPlanId];
+    $("#authStatus").textContent = `${data.name}'s ${data.role} account preview is ready with ${plan.name}. In production, this role and plan will control the starting workspace after login.`;
     event.currentTarget.reset();
   });
 
