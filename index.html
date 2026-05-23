@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ClearClaims Prototype</title>
-    <link rel="stylesheet" href="styles.css?v=17" />
+    <link rel="stylesheet" href="styles.css?v=18" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="manifest" href="manifest.webmanifest" />
   </head>
@@ -133,72 +133,82 @@
           <p class="copyright-line">© 2026 ClearClaims. All rights reserved.</p>
         </div>
 
-        <div class="auth-card">
+        <div class="auth-card auth-access-card">
           <div class="auth-card-heading">
             <div class="auth-icon"><svg><use href="#i-lock"></use></svg></div>
             <div>
-              <p class="eyebrow">Account login</p>
-              <h2>Enter your ClearClaims account.</h2>
+              <p class="eyebrow">Account access</p>
+              <h2>Enter or create your ClearClaims account.</h2>
             </div>
           </div>
-          <form class="auth-form" id="loginForm">
-            <label>Email
-              <input name="email" type="email" list="accountEmails" placeholder="you@example.com" required />
-            </label>
-            <datalist id="accountEmails">
-              <option value="maya.johnson@example.com"></option>
-              <option value="office@roofrightcontractors.com"></option>
-              <option value="adjuster@examplepa.com"></option>
-              <option value="chuck@claimguardians.com"></option>
-              <option value="cynthia@claimguardians.com"></option>
-            </datalist>
-            <label>Password
-              <input name="password" type="password" placeholder="Prototype password" required />
-            </label>
-            <button class="text-button primary" type="submit">
-              <svg><use href="#i-lock"></use></svg><span>Log In</span>
-            </button>
-          </form>
-          <div class="quick-login" aria-label="Prototype quick login">
-            <button type="button" data-account-login="customer"><span>Continue as</span><strong>Homeowner</strong></button>
-            <button type="button" data-account-login="contractor"><span>Continue as</span><strong>Contractor</strong></button>
-            <button type="button" data-account-login="adjuster"><span>Continue as</span><strong>Public Adjuster</strong></button>
-          </div>
-          <p class="auth-status" id="authStatus" aria-live="polite">Prototype login only. The role selected during signup determines where each user starts after login.</p>
-        </div>
 
-        <div class="auth-card auth-create-card">
-          <div class="auth-card-heading">
-            <div class="auth-icon"><svg><use href="#i-user"></use></svg></div>
-            <div>
-              <p class="eyebrow">Create account</p>
-              <h2>Choose your role to get started.</h2>
+          <div class="auth-mode-toggle" role="tablist" aria-label="Choose login or create account">
+            <button class="active" type="button" id="loginModeToggle" role="tab" aria-selected="true" aria-controls="loginPanel" data-auth-mode="login">Log In</button>
+            <button type="button" id="createModeToggle" role="tab" aria-selected="false" aria-controls="createPanel" data-auth-mode="create">Create Account</button>
+          </div>
+
+          <section class="auth-mode-panel active" id="loginPanel" role="tabpanel" aria-labelledby="loginModeToggle" data-auth-panel="login">
+            <div class="auth-panel-heading">
+              <p class="eyebrow">Returning users</p>
+              <h3>Log in to your assigned workspace.</h3>
             </div>
-          </div>
-          <form class="auth-form" id="createAccountForm">
-            <label>Full name
-              <input name="name" placeholder="Your name" required />
-            </label>
-            <label>Email
-              <input name="email" type="email" placeholder="name@example.com" required />
-            </label>
-            <label>Role
-              <select name="role" required>
-                <option value="Homeowner">Homeowner / Customer</option>
-                <option value="Contractor">Contractor Company</option>
-                <option value="Public Adjuster">Public Adjuster</option>
-              </select>
-            </label>
-            <p class="micro-copy">Contractor company accounts can add team members who share the primary company email domain.</p>
-            <button class="text-button" type="submit">Create Account Preview</button>
-          </form>
-          <div class="checkout-panel is-hidden" aria-live="polite">
-            <p class="eyebrow">Simulated checkout</p>
-            <h3 id="checkoutPlanName">Choose a ClearClaims path</h3>
-            <strong id="checkoutPlanPrice">Plan pending</strong>
-            <p id="checkoutPlanDetail">Select the role that fits you, then choose a pricing option.</p>
-            <button class="text-button primary" type="button" id="confirmCheckout">Confirm Plan Preview</button>
-          </div>
+            <form class="auth-form" id="loginForm">
+              <label>Email
+                <input name="email" type="email" list="accountEmails" placeholder="you@example.com" required />
+              </label>
+              <datalist id="accountEmails">
+                <option value="maya.johnson@example.com"></option>
+                <option value="office@roofrightcontractors.com"></option>
+                <option value="adjuster@examplepa.com"></option>
+                <option value="chuck@claimguardians.com"></option>
+                <option value="cynthia@claimguardians.com"></option>
+              </datalist>
+              <label>Password
+                <input name="password" type="password" placeholder="Prototype password" required />
+              </label>
+              <button class="text-button primary" type="submit">
+                <svg><use href="#i-lock"></use></svg><span>Log In</span>
+              </button>
+            </form>
+            <div class="quick-login" aria-label="Prototype quick login">
+              <button type="button" data-account-login="customer"><span>Continue as</span><strong>Homeowner</strong></button>
+              <button type="button" data-account-login="contractor"><span>Continue as</span><strong>Contractor</strong></button>
+              <button type="button" data-account-login="adjuster"><span>Continue as</span><strong>Public Adjuster</strong></button>
+            </div>
+          </section>
+
+          <section class="auth-mode-panel" id="createPanel" role="tabpanel" aria-labelledby="createModeToggle" data-auth-panel="create" hidden>
+            <div class="auth-panel-heading">
+              <p class="eyebrow">New users</p>
+              <h3>Choose your role to get started.</h3>
+            </div>
+            <form class="auth-form" id="createAccountForm">
+              <label>Full name
+                <input name="name" placeholder="Your name" required />
+              </label>
+              <label>Email
+                <input name="email" type="email" placeholder="name@example.com" required />
+              </label>
+              <label>Role
+                <select name="role" required>
+                  <option value="Homeowner">Homeowner / Customer</option>
+                  <option value="Contractor">Contractor Company</option>
+                  <option value="Public Adjuster">Public Adjuster</option>
+                </select>
+              </label>
+              <p class="micro-copy">Contractor company accounts can add team members who share the primary company email domain.</p>
+              <button class="text-button" type="submit">Create Account Preview</button>
+            </form>
+            <div class="checkout-panel is-hidden" aria-live="polite">
+              <p class="eyebrow">Simulated checkout</p>
+              <h3 id="checkoutPlanName">Choose a ClearClaims path</h3>
+              <strong id="checkoutPlanPrice">Plan pending</strong>
+              <p id="checkoutPlanDetail">Select the role that fits you, then choose a pricing option.</p>
+              <button class="text-button primary" type="button" id="confirmCheckout">Confirm Plan Preview</button>
+            </div>
+          </section>
+
+          <p class="auth-status" id="authStatus" aria-live="polite">Prototype login only. Use the toggle to log in or preview account creation.</p>
         </div>
       </div>
     </section>
@@ -950,6 +960,6 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="app.js?v=12"></script>
+    <script src="app.js?v=13"></script>
   </body>
 </html>

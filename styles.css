@@ -463,8 +463,8 @@ svg {
   padding: clamp(18px, 3vw, 28px);
 }
 
-.auth-create-card {
-  grid-column: 2;
+.auth-access-card {
+  align-self: start;
 }
 
 .auth-card-heading {
@@ -484,6 +484,51 @@ svg {
 }
 
 .auth-card h2 {
+  color: var(--accent-dark);
+}
+
+.auth-mode-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  border: 1px solid rgba(37, 174, 232, 0.2);
+  border-radius: var(--radius);
+  background: rgba(232, 247, 253, 0.72);
+  padding: 5px;
+}
+
+.auth-mode-toggle button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auth-mode-toggle button:hover,
+.auth-mode-toggle button.active {
+  background: var(--surface-solid);
+  color: var(--accent-dark);
+  box-shadow: 0 8px 22px rgba(23, 52, 68, 0.08);
+}
+
+.auth-mode-panel {
+  display: none;
+  gap: 14px;
+}
+
+.auth-mode-panel.active {
+  display: grid;
+}
+
+.auth-panel-heading {
+  display: grid;
+  gap: 4px;
+}
+
+.auth-panel-heading h3 {
   color: var(--accent-dark);
 }
 
@@ -2071,10 +2116,6 @@ svg {
 
   .auth-shell {
     grid-template-columns: 1fr;
-  }
-
-  .auth-create-card {
-    grid-column: auto;
   }
 
   .command-panel-wide {

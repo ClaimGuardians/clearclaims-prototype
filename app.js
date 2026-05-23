@@ -390,6 +390,30 @@ function selectPlan(planId) {
   if (status) status.textContent = `${plan.name} selected for checkout preview.`;
 }
 
+function setAuthMode(mode, options = {}) {
+  const nextMode = mode === "create" ? "create" : "login";
+
+  $$("[data-auth-mode]").forEach((button) => {
+    const isActive = button.dataset.authMode === nextMode;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+
+  $$("[data-auth-panel]").forEach((panel) => {
+    const isActive = panel.dataset.authPanel === nextMode;
+    panel.classList.toggle("active", isActive);
+    panel.hidden = !isActive;
+  });
+
+  const status = $("#authStatus");
+  if (status && !options.silent) {
+    status.textContent =
+      nextMode === "create"
+        ? "Create an account preview, then choose the role and plan that fits."
+        : "Prototype login only. Use a demo account or quick login to enter the matching workspace.";
+  }
+}
+
 function selectPath(pathId) {
   const path = PATH_OPTIONS[pathId];
   if (!path) return;
@@ -408,6 +432,7 @@ function selectPath(pathId) {
   const roleSelect = $("#createAccountForm")?.elements.role;
   if (roleSelect) roleSelect.value = path.role;
 
+  setAuthMode("create", { silent: true });
   selectPlan(path.defaultPlanId);
 
   const status = $("#authStatus");
@@ -823,6 +848,7 @@ function setupEvents() {
   });
 
   $$("[data-account-login]").forEach((button) => button.addEventListener("click", () => signInAccount(button.dataset.accountLogin)));
+  $$("[data-auth-mode]").forEach((button) => button.addEventListener("click", () => setAuthMode(button.dataset.authMode)));
   $$("[data-path-select]").forEach((button) => button.addEventListener("click", () => selectPath(button.dataset.pathSelect)));
   $$("[data-plan-select]").forEach((button) => button.addEventListener("click", () => selectPlan(button.dataset.planSelect)));
 
