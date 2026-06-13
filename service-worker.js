@@ -1,11 +1,11 @@
-const CACHE_NAME = "clearclaims-prototype-v18";
+const CACHE_NAME = "clearclaims-prototype-v21";
 const ASSETS = [
   "./",
   "./index.html",
   "./clear-purpose.html",
   "./customer-portal.html",
   "./contractor-portal.html",
-  "./styles.css?v=18",
+  "./styles.css?v=21",
   "./app.js?v=13",
   "./assets/clearclaims-mark.svg",
   "./assets/clearclaims_appicon_final.png",
