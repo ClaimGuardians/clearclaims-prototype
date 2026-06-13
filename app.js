@@ -410,7 +410,7 @@ function setAuthMode(mode, options = {}) {
     status.textContent =
       nextMode === "create"
         ? "Create an account preview, then choose the role and plan that fits."
-        : "Prototype login only. Use a demo account or quick login to enter the matching workspace.";
+        : "Log in to continue to your assigned workspace.";
   }
 }
 
@@ -841,24 +841,24 @@ function setupEvents() {
     const profile = accountFromEmail(data.email);
     const status = $("#authStatus");
     if (!profile) {
-      status.textContent = "Account not recognized in this prototype. Try a demo email or create an account preview below.";
+      if (status) status.textContent = "Account not recognized. Check the email or create an account.";
       return;
     }
     signInAccount(profile.id);
   });
 
-  $$("[data-account-login]").forEach((button) => button.addEventListener("click", () => signInAccount(button.dataset.accountLogin)));
   $$("[data-auth-mode]").forEach((button) => button.addEventListener("click", () => setAuthMode(button.dataset.authMode)));
   $$("[data-path-select]").forEach((button) => button.addEventListener("click", () => selectPath(button.dataset.pathSelect)));
   $$("[data-plan-select]").forEach((button) => button.addEventListener("click", () => selectPlan(button.dataset.planSelect)));
 
   $("#confirmCheckout").addEventListener("click", () => {
     const plan = PLAN_OPTIONS[selectedPlanId];
+    const status = $("#authStatus");
     if (!plan) {
-      $("#authStatus").textContent = "Choose a ClearClaims path and pricing option first.";
+      if (status) status.textContent = "Choose a ClearClaims path and pricing option first.";
       return;
     }
-    $("#authStatus").textContent = `${plan.name} checkout confirmed in prototype mode. No payment was processed.`;
+    if (status) status.textContent = `${plan.name} checkout confirmed. No payment was processed.`;
   });
 
   $("#createAccountForm").addEventListener("submit", (event) => {
@@ -866,7 +866,8 @@ function setupEvents() {
     const data = readForm(event.currentTarget);
     const plan = PLAN_OPTIONS[selectedPlanId];
     const planName = plan ? plan.name : "a plan selected after role review";
-    $("#authStatus").textContent = `${data.name}'s ${data.role} account preview is ready with ${planName}. In production, this role and plan will control the starting workspace after login.`;
+    const status = $("#authStatus");
+    if (status) status.textContent = `${data.name}'s ${data.role} account is ready with ${planName}. This role and plan will control the starting workspace after login.`;
     event.currentTarget.reset();
   });
 

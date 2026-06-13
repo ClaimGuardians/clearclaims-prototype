@@ -225,6 +225,10 @@ svg {
   line-height: 1.5;
 }
 
+.auth-status:empty {
+  display: none;
+}
+
 .auth-feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -532,37 +536,9 @@ svg {
   color: var(--accent-dark);
 }
 
-.auth-form,
-.quick-login {
+.auth-form {
   display: grid;
   gap: 12px;
-}
-
-.quick-login {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.quick-login button {
-  display: grid;
-  gap: 3px;
-  align-content: center;
-  min-height: 76px;
-  border: 1px solid rgba(37, 174, 232, 0.24);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--accent-dark);
-  cursor: pointer;
-}
-
-.quick-login button:hover {
-  background: var(--blue-soft);
-}
-
-.quick-login span {
-  color: var(--muted);
-  font-size: 0.74rem;
-  font-weight: 800;
-  text-transform: uppercase;
 }
 
 .app-shell {
@@ -2267,8 +2243,7 @@ svg {
     padding: 12px;
   }
 
-  .auth-feature-grid,
-  .quick-login {
+  .auth-feature-grid {
     grid-template-columns: 1fr;
   }
 
