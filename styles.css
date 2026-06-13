@@ -200,7 +200,8 @@ svg {
 }
 
 .auth-logo {
-  width: min(520px, 100%);
+  display: block;
+  width: min(640px, 100%);
   height: auto;
 }
 
